@@ -2,7 +2,7 @@
 
 > **Natural language → Production-ready Android code, instantly.**
 
-Codify is an AI-powered code generation tool that converts plain English descriptions into complete Android XML layouts and Kotlin Activity code using Google's Gemini API.
+Codify is an AI-powered code generation tool that converts plain English descriptions into complete Android XML layouts and Kotlin Activity code using the Anthropic Claude API.
 
 ---
 
@@ -19,7 +19,7 @@ Get back:
 ## 🛠 Tech Stack
 
 - **Backend:** Python, Flask
-- **AI:** Google Gemini 1.5 Flash (LLM)
+- **AI:** Anthropic Claude (claude-haiku-4-5)
 - **Frontend:** Vanilla JS, HTML/CSS
 - **Pattern:** Prompt engineering with structured output parsing
 
@@ -33,23 +33,29 @@ git clone https://github.com/Jayneel467/codify.git
 cd codify
 ```
 
-### 2. Install dependencies
+### 2. Create and activate a virtual environment
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Set your Gemini API key
+### 4. Set your Anthropic API key
 ```bash
-export GEMINI_API_KEY="your_api_key_here"
+export ANTHROPIC_API_KEY="your_api_key_here"
 ```
-Get a free key at [Google AI Studio](https://aistudio.google.com/).
+Get a free key at [Anthropic Console](https://console.anthropic.com/).
 
-### 4. Run the app
+### 5. Run the app
 ```bash
 python app.py
 ```
 
-Visit `http://localhost:5000` in your browser.
+Visit `http://localhost:5001` in your browser.
 
 ---
 
@@ -57,7 +63,7 @@ Visit `http://localhost:5000` in your browser.
 
 ```
 codify/
-├── app.py               # Flask backend + Gemini API calls
+├── app.py               # Flask backend + Claude API calls
 ├── templates/
 │   └── index.html       # Frontend UI
 ├── requirements.txt
@@ -69,12 +75,12 @@ codify/
 ## 💡 How It Works
 
 1. User types a description of an Android screen
-2. Flask backend sends a structured prompt to Gemini 1.5 Flash
-3. Gemini returns XML and Kotlin code inside strict delimiters
-4. Backend parses the response and returns both code blocks
+2. Flask backend sends a structured prompt to Claude
+3. Claude returns XML and Kotlin code inside strict delimiters (`===XML===`, `===KOTLIN===`, `===END===`)
+4. Backend parses the response and extracts both code blocks
 5. Frontend renders them side-by-side with copy buttons
 
-The key engineering challenge is **prompt engineering** — getting the LLM to reliably return structured, parseable output every time.
+The key engineering challenge is **prompt engineering** — getting the LLM to reliably return structured, parseable output every time. A fallback parser also handles markdown code blocks in case Claude doesn't follow the delimiters exactly.
 
 ---
 
