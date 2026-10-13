@@ -1,101 +1,122 @@
 # Codify 🤖
 
-> **Natural language → Production-ready Android code, instantly.**
+> Natural language → production-ready Android UI code in seconds.
 
-Codify is an AI-powered code generation tool that converts plain English descriptions into complete Android XML layouts and Kotlin Activity code using the Anthropic Claude API.
-
----
-
-## 🎥 Demo
-
-Type: *"a login screen with email and password"*
-
-Get back:
-- ✅ A complete `activity_main.xml` with Material Design components
-- ✅ A complete `MainActivity.kt` with view bindings and logic
+Codify is an AI-powered app that turns plain-English UI descriptions into complete Android XML layouts and Kotlin activity code using the Anthropic Claude API. It’s built as a practical tool for speeding up mobile UI prototyping and reducing hand-written boilerplate.
 
 ---
 
-## 🛠 Tech Stack
+## What it does
 
-- **Backend:** Python, Flask
-- **AI:** Anthropic Claude (claude-haiku-4-5)
-- **Frontend:** Vanilla JS, HTML/CSS
-- **Pattern:** Prompt engineering with structured output parsing
+You can type prompts such as:
+
+- "a login screen with email and password"
+- "a modern settings page with cards and toggles"
+- "a product listing screen with search and filters"
+
+Codify responds with:
+
+- a complete `activity_main.xml` layout
+- matching `MainActivity.kt` code
+- structured output that is easy to copy into an Android project
 
 ---
 
-## 🚀 Getting Started
+## Tech stack
+
+- Backend: Python, Flask
+- AI: Anthropic Claude API
+- Frontend: HTML, CSS, JavaScript
+- Pattern: Prompt engineering + structured response parsing
+
+---
+
+## Features
+
+- Converts natural-language UI descriptions into Android XML
+- Generates Kotlin activity logic for common screen patterns
+- Displays parsed output side-by-side for easy review
+- Built for rapid prototyping and iteration
+- Designed for developer workflows that need quick mockups
+
+---
+
+## Quick start
 
 ### 1. Clone the repo
+
 ```bash
-git clone https://github.com/Jayneel467/codify.git
-cd codify
+git clone https://github.com/Jayneel467/Codify.git
+cd Codify
 ```
 
-### 2. Create and activate a virtual environment
+### 2. Create a virtual environment
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
 ### 3. Install dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Set your Anthropic API key
+### 4. Add your Anthropic API key
+
 ```bash
 export ANTHROPIC_API_KEY="your_api_key_here"
 ```
-Get a free key at [Anthropic Console](https://console.anthropic.com/).
 
 ### 5. Run the app
+
 ```bash
 python app.py
 ```
 
-Visit `http://localhost:5001` in your browser.
+Open `http://localhost:5001` in your browser.
 
 ---
 
-## 📁 Project Structure
+## Project structure
 
-```
-codify/
-├── app.py               # Flask backend + Claude API calls
+```text
+Codify/
+├── app.py
 ├── templates/
-│   └── index.html       # Frontend UI
+│   └── index.html
 ├── requirements.txt
-└── README.md
+├── README.md
+└── .env.example
 ```
 
 ---
 
-## 💡 How It Works
+## How it works
 
-1. User types a description of an Android screen
-2. Flask backend sends a structured prompt to Claude
-3. Claude returns XML and Kotlin code inside strict delimiters (`===XML===`, `===KOTLIN===`, `===END===`)
-4. Backend parses the response and extracts both code blocks
-5. Frontend renders them side-by-side with copy buttons
+1. The user enters a UI description in plain English.
+2. The Flask backend sends a structured prompt to Claude.
+3. The model returns XML and Kotlin code in clearly separated blocks.
+4. The backend parses the output and renders it in the UI.
+5. The developer can copy and paste the generated code directly into Android Studio.
 
-The key engineering challenge is **prompt engineering** — getting the LLM to reliably return structured, parseable output every time. A fallback parser also handles markdown code blocks in case Claude doesn't follow the delimiters exactly.
-
----
-
-## 🗺 Roadmap
-
-- [ ] Syntax highlighting in the UI
-- [ ] Download as `.zip` with full Android project structure
-- [ ] Multi-screen app generation with navigation graph
-- [ ] Support for Jetpack Compose output
-- [ ] Conversation history (multi-turn refinement)
+The main challenge here is structured generation — ensuring the model returns format-stable code that can be reliably parsed.
 
 ---
 
-## 👤 Author
+## Roadmap
 
-**Jayneel Girnara** — [linkedin.com/in/jayneelgirnara](https://linkedin.com/in/jayneelgirnara)
+- syntax highlighting in generated code blocks
+- download as a zip with full Android project structure
+- multi-screen flow generation
+- Jetpack Compose support
+- multi-turn refinement / chat-based editing
 
-Penn State CS | Building AI-powered developer tools
+---
+
+## Author
+
+Jayneel Girnara
+
+Penn State CS • building product-minded AI tools
